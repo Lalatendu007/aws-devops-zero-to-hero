@@ -3,12 +3,12 @@ set -e
 
 # Stop the running container (if any)
 # Get the container ID without headers
-container_id=$(docker ps -q | head -n 1)
+container_id=$(sudo docker ps -q | head -n 1)
 
 # Check if container ID is not empty
 if [ ! -z "$container_id" ]; then
     # Remove the container
-    docker rm -f "$container_id"
+    sudo docker rm -f "$container_id"
 else
     echo "No running containers found."
 fi
