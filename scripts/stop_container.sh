@@ -2,5 +2,13 @@
 set -e
 
 # Stop the running container (if any)
-#container_id = `docker ps | awk -F " " '{print $1}'`
-#docker rm -f $container_id
+# Get the container ID without headers
+container_id=$(docker ps -q | head -n 1)
+
+# Check if container ID is not empty
+if [ ! -z "$container_id" ]; then
+    # Remove the container
+    docker rm -f "$container_id"
+else
+    echo "No running containers found."
+fi
